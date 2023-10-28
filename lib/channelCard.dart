@@ -20,7 +20,7 @@ class _ChannelCardState extends State<ChannelCard> {
     return TextButton(
       onPressed: () {
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ChannelPage(id: widget.id),
+          builder: (context) => ChannelPage(id: widget.id,title: widget.name,),
         ));
       },
       style: ButtonStyle(

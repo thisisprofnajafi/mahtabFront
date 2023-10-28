@@ -21,7 +21,7 @@ class ApiUtil {
   static Future<dynamic> getRequest(String endpoint) async {
     print('$baseUrl/$endpoint');
     final headers = await getHeaders();
-
+print(headers);
     final response = await http.get(
       Uri.parse('$baseUrl/$endpoint'),
       headers: headers,
@@ -33,6 +33,7 @@ class ApiUtil {
 
     final headers = await getHeaders();
     print('Headers: $headers');
+
     print('Data: ${json.encode(data)}');
     final response = await http.post(
       Uri.parse('$baseUrl/$endpoint'),

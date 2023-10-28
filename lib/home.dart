@@ -64,7 +64,6 @@ class _HomeState extends State<Home> {
   initState() {
     super.initState();
     fetchDataFuture = getChannels();
-   
   }
 
   Future<void> getChannels() async {
@@ -91,7 +90,10 @@ class _HomeState extends State<Home> {
           resizeToAvoidBottomInset: false,
           appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-            title: Text("مدیر کانال"),
+            title: Text(
+              "مدیر کانال",
+              textAlign: TextAlign.right,
+            ),
           ),
           body: SingleChildScrollView(
               child: SafeArea(
@@ -186,10 +188,11 @@ class _HomeState extends State<Home> {
                                                             8.0),
                                                     child: Expanded(
                                                       child: TextFormField(
-                                                        controller: _channelController,
+                                                        controller:
+                                                            _channelController,
                                                         style: TextStyle(
-                                                            color:
-                                                                Colors.blueAccent),
+                                                            color: Colors
+                                                                .blueAccent),
                                                         decoration:
                                                             InputDecoration(
                                                           hintText:
@@ -280,19 +283,29 @@ class _HomeState extends State<Home> {
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemCount: channelData.length,
-                      itemBuilder: (context,index){
+                      itemBuilder: (context, index) {
                         final channelInfo = channelData[index];
                         print(channelInfo);
 
-                        String baseUrl = 'https://abolfazlnajafi.com/mahtab/public/media/channels';
-                        String remoteUrl = channelInfo['profile_path'].replaceFirst('/home/h206274/public_html/mahtab/public/media/channels', baseUrl);
+                        String baseUrl =
+                            'https://abolfazlnajafi.com/mahtab/public/media/channels';
+                        String remoteUrl = channelInfo['profile_path'].replaceFirst(
+                            '/home/h206274/public_html/mahtab/public/media/channels',
+                            baseUrl);
                         print(remoteUrl);
-                        return ChannelCard(
-                          image: remoteUrl,
-                          name: channelInfo['title'].toString(),
-                          id: channelInfo['id'],
-                          count: channelInfo['members_count'].toString(),
-                          channel_id:channelInfo['channel_id'].toString(),
+                        return Column(
+                          children: [
+                            ChannelCard(
+                              image: remoteUrl,
+                              name: channelInfo['title'].toString(),
+                              id: channelInfo['id'],
+                              count: channelInfo['members_count'].toString(),
+                              channel_id: channelInfo['channel_id'].toString(),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            )
+                          ],
                         );
                       },
                     )
